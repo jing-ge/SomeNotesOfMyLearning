@@ -20,9 +20,10 @@
 ###参数介绍
 + version：值为1~40的整数，控制二维码的大小（最小值是1，是个12×12的矩阵）。 如果想让程序自动确定，将值设置为 None 并使用 fit 参数即可。
 + error_correction：控制二维码的错误纠正功能。可取值下列4个常量。
-　　ERROR_CORRECT_L：大约7%或更少的错误能被纠正。
-　　ERROR_CORRECT_M（默认）：大约15%或更少的错误能被纠正。
-　　ROR_CORRECT_H：大约30%或更少的错误能被纠正。
+　　ERROR_CORRECT_L 7%以下的错误会被纠正 
+	ERROR_CORRECT_M (default) 15%以下的错误会被纠正 
+	ERROR_CORRECT_Q 25 %以下的错误会被纠正 
+	ERROR_CORRECT_H. 30%以下的错误会被纠正。
 
 box_size：控制二维码中每个小格子包含的像素数。
 
