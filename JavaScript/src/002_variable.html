@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" charset="utf-8">
+		var a = 3; //number
+		//两种变量，全局变量和局部变量
+		function test() {
+			var b = 4; //局部变量
+			c = 5 ; //全局变量，但是不能在全局使用，必须这个函数执行以后，才有这个全局变量
+
+			//打印全局变量
+			alert(a);
+			//打印局部变量
+			alert(b);
+		}
+		//不可以在这里用c，alert(c)
+		test();
+		//这里可以用c，
+		alert(c);
+		//在这里不能用b，b是局部变量
+		//alert(b);
+
+		//数据类型，ECMAScript有基本型和引用型
+		//基本数据类型：Number,Boolean,String,Undefined,Null
+		//引用数据类型：数组，对象
+
+		//Number,包括整数和小数
+		var a1 = 10;
+		var a2 = 10.5;
+		var a3 = NaN; //不是数,not a number
+		var a4 = 1/0;//正无穷
+		var a5 = 070;//八进制，十六进制0xA
+		console.log(a5);
+		//alert(a3);
+
+		//别做小数相加运算，有精度损失问题
+		var a6 = 0.1;
+		var a7 = 0.2;
+		if (a6+a7==0.3) {
+			console.log("等于0.3");
+		}else {
+			console.log("不等于0.3");
+		}
+
+		//转换数字，
+		var a8 = parseInt("a");//NaN
+		console.log(a8);
+		var a9 = parseInt("a223");//NaN
+		console.log(a9);
+		var a10 = parseInt("223a");//number
+		console.log(a10);
+
+		//Boolean
+		var boo1 = true;
+		var boo2 = false;
+
+		//String
+		var str1 = "我是爸爸";
+		var str2 = "我是儿子";
+
+		//undefined 数据类型他的值只有一个，undefined表示变量声明了，但是没有被复制
+		var a11;
+		console.log(a11);
+
+		//null空值
+		b = null;
+
+		//引用数据类型
+		var arr = [1,2,3];
+		var dates = new Date();
+		var obj = {};
+
+		//typeof 操作符，用来判断数据类型
+		var a = 10;
+		var b = 10.3;
+		var c = true;
+		var d = "abc";
+		var e = new Date();
+		var f = NaN;
+		var g = [1,2,3];
+		var h = undefined;
+		var i = null; //返回一个object，表示一个空对象的引用
+		console.log(typeof a);
+		console.log(typeof b);
+		console.log(typeof c);
+		console.log(typeof d);
+		console.log(typeof e);
+		console.log(typeof f);
+		console.log(typeof g);
+		console.log(typeof h);
+		console.log(typeof i);
+	</script>
+</head>
+<body>
+
+</body>
+</html>
