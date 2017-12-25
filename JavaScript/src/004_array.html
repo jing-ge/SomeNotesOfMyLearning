@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>array</title>
+	<script type="text/javascript" charset="utf-8">
+		//数组本质上也是一个对象 typeof arr
+		//类似java里的map容器，元素类型任意
+		var arr1 = new Array();
+		var arr2 = [1, 2, 3, true, "ajdf", new Date()];
+		console.log(arr2.length);
+		//改变length，自动把后面截掉了
+		arr2.length = 3
+		console.log(arr2);
+		//alert(arr2);//会隐形的调用一个方法，arr2.toString（）方法
+
+
+		// 一些常用方法
+		//-push,pop
+		var arr3 = [];
+		var newlength =arr3.push(1,3,true);//push 返回了新数组的length
+		console.log("after push",arr3);
+		var pop = arr3.pop();//从数组尾部移除一个元素，返回移除的元素
+		console.log("after one pop",arr3);
+
+		//-shift,unshift
+		var arr4 = [1,2,3,true,new Date()];
+		var shift = arr4.shift(10);
+		console.log("after shift:",arr4);//从头部移除一个元素，类比pop
+		arr4.unshift(10,false);
+		console.log("after unshift:",arr4);//从头部插入元素，返回新数组的长度
+
+		//-splice(改变数组本身),slice（不改变数组本身）
+		var arr5 = [1,2,3,4,5];
+		//splice （起始位置，截掉个数，（追加的新元素））
+		arr5.splice(1,2,3,4,5);//134545
+		console.log("after splice:",arr5);
+		//slice
+		var arr6 = [1,2,3,4,5];
+		var re = arr6.slice(2,4);//普通截取，左闭右开，不操作数组本身，返回截取的东西
+		console.log("after slice:",arr6);
+		console.log("after slice re:",re);
+
+		//-concat,join
+		var arr7 = [1,2,3];
+		var arr8 = [true,4,5];
+		var arr78 = arr7.concat(arr8);//不操作数组本身，返回新数组
+		console.log("新合成数组：",arr78);
+		var result = arr7.join('-');//在元素之间加入内传入容，返回一个字符串
+		console.log("join result:",result,typeof result);
+
+		//-sort,reserve 排序不是按照数字大小，而是按照对应字符串第一个比较，也可以传入函数,改变数组本身
+		var arr9 = [4,7,2,7,2,16];
+		arr9.sort();
+		console.log("sort : ",arr9);
+		arr9.reverse();
+		console.log("reserve : ",arr9);//对位置进行倒叙
+
+		//自己定义排序
+		function compare1(a,b){
+			return a-b;
+		}
+		function compare2(a,b){
+			return b-a;
+		}
+		arr9.sort(compare1);
+		console.log("自定义正序排序：",arr9);
+		arr9.sort(compare2);
+		console.log("自定义倒序排序：",arr9);
+	</script>
+</head>
+<body>
+
+</body>
+</html>

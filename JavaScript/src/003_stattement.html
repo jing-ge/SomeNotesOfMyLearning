@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" charset="utf-8">
+		
+		var a1 = 10;
+		var a2 = 10.0;
+		if (a1 == a2 ) {
+			console.log("相等");
+		}
+
+		//js自动转换机制
+		var a3 = 1;
+		var a4 = true;
+		if (a3==a4) {
+			//==   比较两个值是否相等，字符串，数字，布尔值，都可以计较
+			console.log("js自动转换机制————相等");
+		}
+		if (a3 === a4){
+			//===   不仅比较值，还要比较数据类型
+		}else{
+			console.log("not equal");
+		}
+
+		//三目运算
+		var c = 10/2>4?5:3;
+		console.log("c=",c);	
+		
+		//循环
+		for (var i = 0.; i <= 8; i++) {
+				console.log(i);
+		}	
+		//死循环
+		// for (;;) {
+		// 	console.log("正在执行。。。");
+		// }
+
+
+		var i=0;
+		while(i<10){
+			console.log("while i=",i);
+			i++;
+		}
+
+		//while 死循环
+		// while(true){
+		// 	console.log("while i=",i);
+		// 	i++;
+		// }
+
+		//for to while
+		// for (; i < 10; i++) {
+		// 	//循环体
+		// }
+		
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
