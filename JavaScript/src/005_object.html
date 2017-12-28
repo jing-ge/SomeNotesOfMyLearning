@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>object</title>
+	<script type="text/javascript" charset="utf-8">
+		//Object 所有类的基础类
+
+		//实例化对象
+		var obj = new Object();
+		//var obj  = new Object();不推荐
+		var obj = {};
+
+		//给对象设置属性
+		obj["sex"] = 'man';
+		obj.name = "Jack";
+		obj.age = 20;
+		//给对象设置方法
+		obj.see = function	(){
+			console.log("i am a obj function");
+		}
+
+		//使用对象的属性或者方法
+		console.log("name:",obj.name);
+		console.log("age:",obj.age);
+		obj.see();
+
+		//删除对象的属性或方法 delete
+		delete obj.name;
+		//delete obj.see;
+		console.log("obj:",obj);
+
+		obj.name1 = "Jack";
+		obj.age1 = 20;
+		//遍历一个js对象 for in 当然也可以是数组
+		for(var item in obj){
+				console.log("for in:",item);
+				//获取对应的值，obj[item]
+				console.log("for in value:",obj[item]);
+		}
+
+		//Constructor
+		console.log("Constructor",obj.constructor);
+
+		//hasOwnProperty(string)
+		console.log("obj 里面有没有 name1属性：",obj.hasOwnProperty('name1'));
+		console.log("obj 里面有没有 name3属性：",obj.hasOwnProperty('name3'));
+
+		//isPrototypeOf(obj) 检测原形，以后说
+		// console.log("obj 的原形是不是 Object：",obj.isPrototypeOf(new Object()));
+		// console.log("obj 的原形是不是 Math：",obj.hasOwnProperty(new Math));
+
+		//propertyIsEnumerable(string) 用于检测一个对象的属性是不是可以枚举，用for in
+		console.log("name1属性可以枚举么：",obj.propertyIsEnumerable("name1"));
+		console.log("see方法可以枚举么：",obj.propertyIsEnumerable("see"));
+
+		//toLocaleString() 返回对象字符串表示，与执行环境地区对应
+		//toString()      返回对象字符串表示，
+		//valueOf()       返回对象字符串，数字或者布尔值
+		console.log("toLocaleString():",obj.toLocaleString());
+		document.write(obj.toLocaleString())
+		console.log("toString():",obj.toString());
+		console.log("valueOf():",obj.valueOf());
+	</script>
+</head>
+<body>
+
+</body>
+</html>

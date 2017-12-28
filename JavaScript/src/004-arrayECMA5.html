@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ECMA5</title>
+</head>
+<script type="text/javascript" charset="utf-8">
+	var arr = [1,2,3,4,5,4,3,2,1];
+
+	//新加位置方法
+	//indexOf,lastIndexOf
+
+	//1个参数的时候传入的是值，返回存在的索引，不存在返回-1
+	var index = arr.indexOf(4);
+	//两个参数，第一个参数是表示起始位置，第二个参数是value
+	var index = arr.indexOf(4,4);//他们查找数组比较的时候是 ===
+
+	//从后往前找
+	var lastIndex = arr.lastIndexOf(1);
+	console.log("index:",index);
+	console.log("lastindex:",lastIndex);
+
+	//5个新加迭代的方法
+	//every,filiter,forEach,map,some
+
+	//every 对数组的每一个函数，用传入的函数进行运行
+	//      如果都返回true，则返回true，若有一个是false，则返回false
+	var result = arr.every(function (item, index, array) {
+		return item > 0; //true
+		//return item > 2; false
+	});
+	console.log("every:",result);
+
+	//filter 对数组的每一个函数，用传入的函数进行运行
+	//       把过滤后的结果返回,也就是返回自定义函数的返回值为true的元素
+	var result = arr.filter(function (item, index, array) {
+		return item >2;
+	});
+	console.log("filter:",result);
+
+	//forEach 循环每一项的值，并执行一个方法
+	arr.forEach(function (item, index, array) {
+		console.log("forEach:",item);
+	});
+
+	//map 循环每一项的值，并执行一个方法,可以返回新的数组
+	var result = arr.map(function (item, index, array) {
+		return item*2;
+	});
+	console.log("map:",result);
+
+	//some 对数组的每一个函数，用传入的函数进行运行
+	//     若有一个是true，则返回true
+	var result = arr.some(function (item, index, array) {
+		//return item > 3; //true
+		return item > 13;//false
+	});
+	console.log("some:",result);
+
+
+	//缩小的方法
+	//reduce reduceRight
+	//(前一个值，当前值，索引位置，数组)
+	var result = arr.reduce(function (prev, cur, index, array) {
+		return prev + cur;
+	});
+	console.log("reduce:",result);
+	//reduceRight 从右边开始遍历
+	var result = arr.reduceRight(function (prev, cur, index, array) {
+		return prev + cur;
+	});
+	console.log("reduceRight:",result);
+</script>
+<body>
+
+</body>
+</html>
