@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>实例</title>
+	<script type="text/javascript">
+		//模拟Java map
+
+		function Map(){
+			var obj = {};
+
+			//put function
+			this.put = function (key, value){
+				obj[key] = value;
+			}
+
+			//size function
+			this.size = function () {
+				var count = 0;
+				for (var arrt in obj){
+					count ++;
+				}
+				return count;
+			} 
+
+			//get function
+			this.get = function (key) {
+				if (obj[key] || obj[key] === 0 || obj[key] === false) {
+					return obj[key];
+				}else {
+					return null;
+				}
+			}
+
+			//remove function
+			this.remove = function (key){
+				if (obj[key] || obj[key] === 0 || obj[key] === false) {
+					delete obj[key]
+					return true;
+				}else {
+					return null;
+				}
+			}
+
+			//eachMap function
+			this.eachMap = function (fn) {
+				for(var attr in obj){
+					fn(attr,obj[attr]);
+				}
+			}
+		}
+
+		var a = new Map();
+		a.put("01","abs");
+		a.put('02',0);
+		a.put('03',true);
+		a.put('04', new Date());
+
+		console.log(a.size());
+		console.log(a.get('02'));
+		a.remove('02');
+		console.log(a.get('02'));
+		a.eachMap(function (key,value){
+			console.log("for in ",key,value);
+		})
+	</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>object single</title>
+	<script type="text/javascript" charset="utf-8">
+		
+		//Global 全局的中级的对象，不存在的
+
+		var uri = "http://www.baidu.com  我的";
+		//encodeURI, encodeURIComponent
+		var str1 = encodeURI(uri);
+		var str2 = encodeURIComponent(uri); //常用的方法 任何不标准的都会编码
+		console.log("str1",str1);
+		console.log("str2",str2);
+		//decodeURI, decodeURIComponent
+		console.log("destr1",decodeURI(str1));
+		console.log("destr2",decodeURIComponent(str2));
+
+		//eval(string) 无形的javascript解析器
+		var str3 = "var a=10;var b = 20;";
+		eval(str3);
+		console.log("eval a:",a);
+		console.log("eval b:",b);
+
+		//数组字符串直接使用 eval(string arr)
+		var strarr = '[1,2,4,5,6]';
+		var arr = eval(strarr);
+		console.log(arr);
+		//obj
+		var strobj = '{"name":12,"age":343}';
+		var obj = eval('('+strobj+')');
+		console.log(obj);
+
+		//parseInt parseFloat
+		var strnum1 = "345";
+		var strnum2 = "34.65";
+		var num1 = parseInt(strnum1);
+		var num2 = parseFloat(strnum2);
+		console.log("num1",num1);
+		console.log("num2",num2);
+
+		//escape unescape URI
+		var str1 = "冯博靖";
+		var str2 = escape(str1);
+		console.log("escape:",str2);
+		console.log("unescape:",unescape(str2));
+
+		//判断是不是number isNaN 不是number 返回true 是number返回false
+		var res1 = isNaN('1');
+		var res2 = isNaN('a');
+		console.log("str 1 isNaN:",res1);
+		console.log("a isNaN:",res2);
+
+		//在js里面只有 NaN不等于自己本身
+		console.log("NaN == NaN:",NaN == NaN);
+		console.log("typeof NaN:",typeof NaN);
+
+		//Date 日期类型
+
+		var date = new Date();
+		console.log(date);
+		var year = date.getFullYear();
+		var month = date.getMonth()+1;
+		var xq = date.getDay();
+		var day = date.getDate();
+
+		var hours = date.getHours();
+		var minutes = date.getMinutes();
+		var second = date.getSeconds();
+		console.log("当前时间为："+year+'年'+month+'月'+day+'日  '+hours+':'+minutes+':'+second+"星期"+xq);
+		var time = date.getTime()/1000;//时间戳，毫秒
+		console.log(time);
+	</script>
+</head>
+<body>
+
+</body>
+</html>
