@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>function2</title>
+	<script type="text/javascript">
+		
+		//三种定义方式
+
+		//1 function语句式 优先解析
+		function test1() {
+			console.log("i am test1");
+		}
+ 
+		//2 函数的直接量ECMA推荐 顺序解析
+		var test2 = function () {
+			console.log("i am test 2");
+		}
+
+		//3 function 构造函数值 顺序解析
+		var test3 = new Function("a","b","return a+b;");
+		console.log(test3(3,6));
+
+		//函数效率方面
+		// var d1 = new Date();
+		// var t1 = d1.getTime();
+		// for(var i = 1;i < 100000;i++){
+		// 	//function test1() {}       //fast只解析一次，适用于调用多次的函数
+		// 	var test2 = new Function(); //slow不占用内存，效率慢，适用于调用一次或者很少的函数
+		// }
+		// var d2 = new Date();
+		// var t2 = d2.getTime();
+		// console.log("time:",t2-t1);
+
+
+		//example  4 2 3 3 5 6
+		function f(){return 1;}                 //函数1
+		console.log(f());
+		var f = new Function("return 2;");		//函数2
+		console.log(f());
+		var f = function(){return 3;}			//函数3
+		console.log(f());
+		function f(){return 4;}					//函数4
+		console.log(f());
+		var f = new Function("return 5;");		//函数5
+		console.log(f());
+		var f = function(){return 6;}			//函数65
+		console.log(f());
+
+		//函数作用域的概念
+		var k = 1;
+		function t1() {
+			var k = 2;
+			// function test(){
+			// 	return k;
+			// }
+
+			// var test = function () {
+			// 	return k;
+			// }
+
+			var test = new Function("return k;");//具有一个顶级的作用域
+			console.log("k =",test());
+		}
+		t1();
+	</script>
+</head>
+<body>
+
+</body>
+</html>

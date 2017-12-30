@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>function</title>
+	<script type="text/javascript" charset="utf-8">
+		//简单的一个函数，function关键字+函数名字（没有返回类型）
+
+		//参数列表想弹雨函数入口，return相当于函数出口
+		function test(a, b){
+			return a+b;//遇到return，就不执行了
+		}
+		var res = test(2,3);
+		console.log(res);
+
+		//函数也是一种数据类型
+		console.log("test:",typeof test);
+
+		function test1(aa) {
+			aa();
+		}
+		function test2() {
+			console.log("I am test2");
+		}
+		test1(test2);
+		test1(function () {
+			console.log("匿名函数执行了");
+		})
+
+		//JS中函数嵌套定义，但不建议这么做
+		function test3() {
+			//只能在test3里面执行test4
+			function test4() {
+				console.log("test4");
+			}
+		}
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>function3</title>
+	<script type="text/javascript">
+		
+		//function 参数
+
+		//js中函数参数：形参，实参
+		function test(a,b,c,d){
+			//内部就是用一个数组接受一个实际参数
+			//通过arguments对象访问函数的实际参数
+			console.log("实际参数个数：",arguments.length);
+			for (var i = 0; i < arguments.length; i++) {
+				console.log("实际：",arguments[i]);
+			}
+
+			//arguments.callee == test.length
+			//arguments.callee.length
+			if (arguments.callee.length == arguments.length) {
+				return a+b;
+			}else{
+				console.log("参数个数不正确");
+			}
+			
+		}
+		console.log(test());
+		console.log(test(2,4));
+		console.log("test的参数个数：",test.length);
+
+		function fact(num) {
+			if(num<=-1){
+				return 1;
+			}else{
+				return num*fact(num-1);
+				//return num*arguement.callee(num-1);
+			}
+		}
+		fact(5);
+		var f = fact;
+		fact = null;
+		f(8);
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
