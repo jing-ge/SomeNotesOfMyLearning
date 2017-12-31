@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>function6</title>
+	<script type="text/javascript">
+		//作用域连和执行环境
+		//每一个函数都有一个执行环境
+		//1.执行环境 window对象（最上层的执行环境）
+		var color1 = 'blue';
+		function changeColor(){
+			var color2 = "red";
+			function swapColor(){
+				var color3 = color2;
+				color2 = color1;
+				color1 = color3;
+				//这里可以访问color1 2 3
+			}
+			//这里可以访问color1 2
+			swapColor();
+		}
+		//这里只能访问color1
+		changeColor();
+
+		//环境变量key一层一层向上追溯，可以访问他的所有祖宗函数变量，但不能访问儿子变量和函数
+	</script>
+</head>
+<body>
+
+</body>
+</html>
