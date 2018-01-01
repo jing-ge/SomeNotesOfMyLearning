@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>clusure</title>
+	<script type="text/javascript">
+		var name = "xiao A";
+		var obj1 = {
+			name : "xioa B",
+			getName : function () {
+				return function () {
+					return this.name;
+				}
+			}
+		}
+		var obj2 = {
+			name : "xioa B",
+			getName : function () {
+				return function () {
+					return this.name;
+				}.bind(this)
+			}
+		}
+		var obj3 = {
+			name : "xioa B",
+			getName : function () {
+				//this总是指向调用者
+				var that = this;
+				return function () {
+					return that.name;
+				}
+			}
+		}
+		console.log("obj1:",obj1.getName()());//window.name=this.name
+		console.log("obj2:",obj2.getName()());
+		console.log("obj3:",obj3.getName()());
+
+		//闭包 一个函数可以访问另外一个函数作用域中的变量
+		//封闭性：private 保护变量
+
+		//clusre
+		function f(x) {
+			var temp = x;
+			return function (x) {
+				 temp +=x;
+				 console.log(temp);
+			}
+		}
+		var a = f(40);
+		a(6);
+		a(6);
+		a(6);
+	</script>
+</head>
+<body>
+
+</body>
+</html>
