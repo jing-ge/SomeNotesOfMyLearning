@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>oop2</title>
+	<script type="text/javascript">
+		
+
+		//原型 prototype
+		var a = {};
+		console.log(a);
+
+		function sayName() {
+			console.log("我叫xxx");
+		}
+		//构造函数式
+		function Person(name, age) {
+			this.name = name;
+			this.age = age;
+			this.sayName = function () {
+				console.log("我叫xxx");
+			}
+			this.newSayName = sayName;
+		}
+		var p1 = new Person('zc',34);
+		var p2 = new Person('zc',45);
+		console.log(p1.sayName == p2.sayName);//false  why?
+		console.log(p1.newSayName == p2.newSayName);//ture
+		console.log(p1.name == p2.name);
+		// prototype 创建每一个函数都有一个prototype属性，这个属性其实是一个指针，而这个指针总指向一个对象
+		//这个对象的用途就是将特定的属性和方法包含在内，祈祷一个所有实例所共享的作业
+
+		function MyPerson() {
+			
+		}
+		var obj = MyPerson.prototype;
+		obj.name = 'z2';
+		obj.age = 20;
+		obj.sayName = function () {
+			console.log(this.name);
+		}
+		console.log(obj);
+		var p3 = new MyPerson();
+		var p4 = new MyPerson();
+		console.log("p3:",p3); 
+		console.log("p3name::",p3.name); 
+		console.log("p4:",p4);
+		console.log("p4age::",p4.age); 
+		console.log(p3.sayName == p4.sayName);//ture
+
+		//构造函数 原型对象 实例对象
+		//构造函数.prototype = 原型对象
+		//原型对象.constructor = 构造函数
+		//实例对象.prototype = 原型对象
+		console.log(obj.isPrototypeOf(p4));
+	</script>
+</head>
+<body>
+
+</body>
+</html>

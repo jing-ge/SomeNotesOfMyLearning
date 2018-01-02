@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>oop</title>
+	<script type="text/javascript">
+		var obj = new Object();//var obj = {};
+		obj.name = "z3";
+		obj.sex = 'nan';
+		obj.sayName = function () {
+				console.log("我是张三");
+		}
+
+		//第一种形式  工厂模型
+		function createPerson(name,sex,age) {
+			var obj = new Object();
+			obj.name = name;
+			obj.sex = sex;
+			obj.age = age;
+			return obj;
+		}
+		var p1 = createPerson("zc","nan",23);
+		var p2 = createPerson("z3","nv",45);
+
+		console.log(p1.name);
+		console.log(p2.sex);
+
+		//第二种形式 构造函数式 new  推荐
+		function Persion(name,sex,age) {
+			// 第一个字母大写，约定俗成是一个类
+			// this指向了p4
+			this.name = name;
+			this.sex = sex;
+			this.age = age;
+		}
+		var p4 = new Persion('w5','nan',45);
+		var p5 = new Persion('里','nv',34);
+		console.log(p4.age);
+		console.log(p5 == p4);//false 验证了类的概念
+		console.log(p4.constructor == Persion); // ture
+		console.log(p5 instanceof Persion); //ture 
+
+		//创建对象方式
+		//1. 通过构造函数去使用
+		var p6 = new Persion('w5','nan',45);//不可使用 var p6 = Persion('w5','nan',45)
+		//2. 通过函数去使用
+		var p7 = Persionn("zc","nan",23);//这相当于window调用了，属性挂到了window上了
+		//3.在另一个对象的作用域中调用
+		var o = new Object();
+		Persion.call(o,'w5','nan',45);
+		console.log(o.name);
+	</script>
+</head>
+<body>
+
+</body>
+</html>
