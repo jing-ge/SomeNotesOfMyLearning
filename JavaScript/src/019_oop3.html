@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>obj</title>
+	<script type="text/javascript">
+		
+
+		//Object.getPrototypeOf();//根据实例对象获得原型对象
+		function Person() {
+				
+		}
+		Person.prototype.name ="z3"; 
+		Person.prototype.age = 43; 
+		Person.prototype.sayName = function () {
+			console.log("i am a method");
+		}
+		var p1 = new Person();
+		var prototypeObj = Object.getPrototypeOf(p1);
+		console.log(prototypeObj);
+
+
+		var p2 = new Person();
+		p2.name = "w5";
+		console.log(p2.name); //就想获得原型对象的属性 delete p2.name
+		console.log(p2.age);
+		//每次代码读取一个对象属性的时候，首先会进行一次搜索：搜索实例对象里name的属性
+		//如果没有，就去原型对象里面去搜索name属性，如果有就返回，没有返回undefined
+
+		//判断一个对象属性是否属于原型属性还是属于实例属性
+		var p3 = new Person();
+		console.log(p3.hasOwnProperty('name'));//false
+
+		//in操作符，判断属性是否存在于实例对象和原型对象中，
+		//不区分是原型的属性还是实例对象的属性,若都不存在返回false
+		p3.in = "aaa";
+		console.log('name' in p3);//true
+		console.log('in' in p3);//true
+
+		//判断属性是否存在原型中
+		//第一个参数，当前对象
+		//第二个参数要判断的属性
+		function hasPrototypeProperty(Object, name) {
+			return !Object.hasOwnProperty(name) && name in Object;
+		}
+		console.log(hasPrototypeProperty(p3,'name'));
+
+
+		//ECMA5新特性 Object.keys();
+		//拿到当前对象的所有keys返回数组，不包括原型对象的属性
+
+		var p4 = new Person();
+		p4.name = "5s";
+		p4.age = 34;
+		var arr1 = Object.keys(p4);
+		var arr2 = Object.keys(Person.prototype);
+		console.log(arr1);
+		console.log(arr2);
+
+
+		//ECMA5 constructor属性不能被枚举，默认false
+		//Object.getOwnPropertyName s枚举所有属性，不管内部属性是否可以枚举
+		var arr3 = Object.getOwnPropertyNames(Person.prototype);
+		console.log(arr3);
+	</script>
+</head>
+<body>
+
+</body>
+</html>

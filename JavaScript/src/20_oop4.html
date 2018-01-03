@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		
+		//array ecch 方法
+		//for each 只适合一维数组
+		var arr = [1,2,3,4,5];
+		arr.forEach(function (item, index, array) {
+			console.log(item);
+		})
+
+		//自己实现一个each方法，能实现遍历多维数组
+		var arr = [1,[2,[3,[4]]],5];
+
+		Array.prototype.each = function (fn) {
+			try{
+				//1遍历数组每一项
+				this.i ||(this.i= 0);//计数器，记录位置
+				//2.严谨的判断，什么时候走each核心方法
+				//当数组擦汗那个都大于0，参数必须是一个函数
+				if (this.length>0 && fn.constructor == Function) {
+					//循环遍历数组所有项
+					while(this.i < this.length){
+						//核心代码，获取数组的每一项
+						var e = this[this.i];
+						if (e && e.constructor == Array) {
+							//循环到当前元素是数组，递归操作
+							e.each(fn);
+						}else{
+							//就是为了执行一下这个函数，传递参数 
+							fn.apply(e,[e]);//fn.call(e,e);
+						}
+						this.i++;
+					}
+					delete this.i;
+				}
+			}catch(ex){
+				console.log("Some error happening");
+			}
+			return this;
+		}
+
+		arr.each(function (item) {
+			console.log("my:",item);
+		})
+	</script>
+</head>
+<body>
+
+</body>
+</html>
