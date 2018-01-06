@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<script type="text/javascript">
+	//简单原型
+
+	function Person() {
+		
+	}
+	Person.prototype = {
+		constructor: Person,//必须表示原型对象的构造器，不然改变了Object的构造器
+		name: "z3",
+		age: 20,
+		job: 'cxy',
+		say: function () {
+			console.log("I am function");
+		}
+	}
+
+	var p1 = new Person();
+	console.log(p1.name);
+	p1.say();
+	console.log(Person.prototype.constructor);
+
+	for(attr in p1){
+		console.log("my:",attr);//constructor 属性也被枚举了
+	}
+
+	//ECMA 给原型重新设置构造器 Object.definePropery(对象,设置属性,配置项)
+	function Person2() {
+		
+	}
+	Object.defineProperty(Person2.prototype,'constructor',{
+		enumerable: false,
+		value: Person2
+	})
+	Person2.prototype = {
+		name: "z3",
+		age: 20,
+		job: 'cxy',
+		say: function () {
+			console.log("I am function");
+		}
+	}
+	var p2 = new Person2();
+	for(attr in p2){
+		console.log("my2:",attr);//constructor 属性也被枚举了
+	}
+
+
+	//原型的动态特性
+	function Person3() {
+		
+	}
+	var p3 = new Person3();
+	//原型对象的构造器默认为Person
+	Person3.prototype.say = function () {
+		console.log("I am a function");
+	}
+
+	
+	p3.say();//有结果的
+
+
+	//注意简单原型的使用顺序
+	//实例对象必须在原型对象之后创建
+	function Person4() {
+		
+	}
+	var p41 = new Person4();
+	Person4.prototype = {
+		constructor: Person4,//必须表示原型对象的构造器，不然改变了Object的构造器
+		name: "z3",
+		age: 20,
+		job: 'cxy',
+		say: function () {
+			console.log("I am Person4 function");
+		}
+	}
+	var p42 = new Person4();
+	p42.say();//不会报错
+	p41.say();//会报错，和上一个对比，这个对象里面没有任何方法
+	
+</script>
+<body>
+
+</body>
+</html>
