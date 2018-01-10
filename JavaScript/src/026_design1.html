@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		//javascript定义接口的三种方式
+
+		//1 注解描述的方式
+		//优点：程序员可以有一个参考
+		//缺点：属于文档的范畴，这种方式太松散，没有检查接口的方法是否完全实现
+		/*
+		 *	interface Composite{
+		 *		function add(obj);
+		 *		function remove(obj);
+		 *		function update(obj);
+		 *	}
+		 */
+
+		//CompositeImpl 
+		//不推荐这种方式，创建多个不同函数
+		var CompositeImpl = function () {
+			this.add = function (obj) {
+
+			};
+			this.remove = function (obj) {
+				
+			}
+		}
+		var c1 = new CompositeImpl();
+		var c2 = new CompositeImpl();
+
+		//采用原型方法
+		var CompositeImpl2 = function () {
+			
+		}
+		CompositeImpl2.prototype.add = function (obj) {
+			//do something
+		}
+		CompositeImpl2.prototype.remove = function (obj) {
+			//do something
+		}
+		//2 属性检测的方式
+
+		//3 鸭式变形的方式
+	</script>
+</head>
+<body>
+
+</body>
+</html>
