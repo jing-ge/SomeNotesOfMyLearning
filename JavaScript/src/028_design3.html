@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>design3</title>
+	<script type="text/javascript">
+		// 实现接口的第三种方法：鸭式辩型法（js实现接口最完美的方式）
+		// 注解描述，属性检测  有缺点
+		// 核心：一个类实现接口的主要目的，把接口里的方法都实现了（检测方法）
+		// 完全面向对象，代码实现统一，也解耦了
+
+		// 1 接口类 Class Interface ==>实例化N多个接口
+
+		/**
+		*接口类需要的参数
+		*参数1：接口的名字
+		*参数2：方法s(只有一个)接受方法名称的数组
+		*/
+		var Interface = function (name ,methods) {
+			// 判断接口的参数个数
+			if (arguments.length !== 2) {
+				throw new Error('this instence intercface constructor must have two parameters')
+			}
+			this.name = name ;
+			this.methods = []; //定义一个空数组，等待接受元素
+			for (var i =0, len = methods.length; i < len; i++){
+				if (typeof methods[i] !=== String) {
+					throw new Error('intercface methods name must be string');
+				}
+				this.methods.push(methods[i]);
+			}
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>
