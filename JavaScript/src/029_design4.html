@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>design4 singleton</title>
+	<script type="text/javascript">
+		
+		//单体模式(singleton)
+		// 1 简单单体模式
+		var Singleton = {
+			attr1: true,
+			attr2: 10,
+			method1: function () {
+				console.log("I am a function1");
+			},
+			method2: function () {
+				console.log("I am a function2");
+			}
+		};
+
+		console.log(Singleton.attr2);
+		Singleton.method2();
+		//补充，划分命名空间（区分代码，降低耦合性）
+		var FBJ = {};
+		FBJ.Singleton = {
+			attr1: true,
+			attr2: 10,
+			method1: function () {
+				console.log("I am a function1");
+			},
+			method2: function () {
+				console.log("I am a function2");
+			}
+		}
+		console.log(FBJ.Singleton.attr2);
+
+		// 借用闭包来创建单体模型：闭包主要目的是保护数据
+		var FBJ2 = {};//命名空间
+		FBJ2.Singleton = (function () {
+			// why 使用闭包？
+
+			// 在这个地方可以使用自己的成员了，只通过一个return出口
+			// 比如：
+			var a1 = true;
+			var f1 = function () {
+				console.log("i am f1 function");
+			}
+			var f2 = function () {
+				console.log("i am f2 function");
+			}
+			//块级作用域里的执行结果赋值给我的单体对象
+			return {
+				attr1: a1,
+				attr2: 10,
+				method1: function () {
+					return f2();
+				},
+				method2: f1
+			};
+		})();
+		FBJ2.Singleton.method2();
+		FBJ2.Singleton.method1();
+		console.log(FBJ2.Singleton.attr2);
+	</script>
+</head>
+<body>
+</body>
+</html>
