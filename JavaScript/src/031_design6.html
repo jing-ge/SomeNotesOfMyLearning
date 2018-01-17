@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		//1 简单函数的链式调用
+		function Dog() {
+			this.run = function () {
+				console.log('dog is running ...');
+				return this;
+			}
+			this.eat = function () {
+				console.log('dog is eating ...');
+				return this;
+			}
+			this.sleep = function () {
+				console.log('dog is sleeping');
+				return this;
+			}
+
+		}
+		var d1 = new Dog();
+		d1.run();
+		d1.eat();
+		d1.sleep();
+
+		//d1.run().eat().sleep()
+		console.log("--------------");
+		d1.run().eat().sleep();
+	</script>
+</head>
+<body>
+
+</body>
+</html>

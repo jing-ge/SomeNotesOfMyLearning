@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		// 惰性单体（和必保单体有点相似的地方）
+		// 命名空间 
+		var Ext = {};
+		Ext.Base = (function () {
+			// 私有变量 控制返回单体对象
+			var uniqInstence;
+
+			//需要一个构造器 init 初始化对象的方法
+			function init() {
+				// 私有成员变量
+				var a1 = 1;
+				var a2 = true;
+				var fn1 = function () {
+					console.log('fn1');
+				};
+				var fn2 = function () {
+					console.log('fn2');
+				};
+				return {
+					attr1: a1,
+					attr2: a2,
+					method1: fn1,
+					method2: fn2
+				}
+			}
+
+			
+			return {
+				getInstence: function () {
+				  	if (!uniqInstence) {
+						// 不存在，创建单体对象
+						uniqInstence = init();
+					}
+					return uniqInstence
+				}
+			}
+		})();
+		console.log(Ext.Base.getInstence());
+		console.log(Ext.Base.getInstence().attr2);
+		Ext.Base.getInstence().method2();
+
+		// 分支单体 （判断程序的分支<一般用来做浏览器的差异检测>）
+		var difference = true;
+		Ext.More = (function () {
+			var objA = {// 火狐浏览器内部的一些配置
+				attr1 : "FF1"
+				// 属性1
+				// 属性2
+				// 属性3
+				// 属性4
+			}
+			var objB = {// IE浏览器的一些配置
+				attr1 : "IE1"
+				// 属性1
+				// 属性2
+				// 属性3
+				// 属性4
+			}
+			return difference?objA:objB;
+		})();
+		console.log(Ext.More.attr1);
+	</script>
+</head>
+<body>
+
+</body>
+</html>
