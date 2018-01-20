@@ -63,7 +63,7 @@
 		//检验通过，不做任何操作，不通过，抛出一个异常
 		Interface.ensureImplements = function (object) {
 			// 判断传入参数的个数
-			if (arguments.length <= 2) {
+			if (arguments.length < 2) {
 				throw new Error("The number of parameters is error,it must be more then two");
 			}
 			// 获得接口实例对象，获得接口实例的方法
@@ -78,7 +78,7 @@
 					// 用一个临时变量接受每一个方法的名字（注意是字符串，并不是函数）
 					var methodName = instenceInterface.methods[j]; 
 					if (!object[methodName] || typeof object[methodName] !== 'function') {
-						throw new Error("the method is not found");
+						throw new Error("the method" +methodName+" is not found");
 					}
 				}
 			}

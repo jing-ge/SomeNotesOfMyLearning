@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>design 8</title>
+	<!-- 引入的核心js公共文件 -->
+	<script type="text/javascript" src="../common/ComonUtil.js"></script>
+	<script type="text/javascript">
+		// 工厂模式 factory
+		// 核心：为了生产对象，实现解耦
+
+		// 搭建一个工厂的环境
+
+		//卖车的商店
+		function Carshop() {
+			
+		}
+		Carshop.prototype = {
+			constructor : Carshop,
+			sellCar :function (type) {
+				var car;//声明一个变量
+				switch (type){
+					case 'Benz':car = new Benz();break;
+					case 'Bwn':car = new Bwn();break;
+					case 'Adui':car = new Adui();break;
+					default  :'not buy it';
+				}
+				//检验接口实现
+				JGG.Interface.ensureImplements(car,CarInterface);
+				return car;
+			}
+		}
+
+		// 接口对象
+		var CarInterface = new JGG.Interface('CarInterface',['start','run']);
+
+		// Class benz bwn adui
+		function Benz() {
+			
+		}
+		Benz.prototype.start = function () {
+			console.log("benz start ....")
+		}
+		// Benz.prototype.run = function () {
+		// 	console.log("benz run ....")
+		// }
+
+		function Bwn() {
+		
+		}
+		Bwn.prototype.start = function () {
+			console.log("Bwn start ....")
+		}
+		Bwn.prototype.run = function () {
+			console.log("Bwn run ....")
+		}
+
+		function Adui() {
+			
+		}
+		Adui.prototype.start = function () {
+			console.log("Adui start ....")
+		}
+		Adui.prototype.run = function () {
+			console.log("Adui run ....")
+		}
+
+
+
+		var shop = new Carshop();
+		var newcar = shop.sellCar('Benz');
+		newcar.start();
+		newcar.run();
+	</script>
+</head>
+<body>
+
+</body>
+</html>
