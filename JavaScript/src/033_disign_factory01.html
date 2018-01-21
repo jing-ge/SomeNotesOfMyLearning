@@ -33,43 +33,79 @@
 		// 接口对象
 		var CarInterface = new JGG.Interface('CarInterface',['start','run']);
 
+		// SuperClass
+		function BaseClass() {
+			// body...
+		}
+		BaseClass.prototype = {
+			constructor : BaseClass,
+			start: function () {
+				// 这个this代指实例对象
+				console.log(this.constructor.name + '.. start...')
+			},
+			run: function () {
+				console.log(this.constructor.name + '.. run...')
+			}
+		}
+
+		//继承的时候一定要先继承再进行给原型对象添加方法
+		//因为一旦继承，原型对象动态改变，父类的的实例是子类的原型对象
+
 		// Class benz bwn adui
 		function Benz() {
 			
 		}
-		Benz.prototype.start = function () {
-			console.log("benz start ....")
-		}
+		//注意关键：先继承在扩展子类自己特有的方法
+		JGG.extend(Benz,BaseClass)
+		// Benz.prototype.start = function () {
+		// 	console.log("benz start ....")
+		// }
 		// Benz.prototype.run = function () {
 		// 	console.log("benz run ....")
 		// }
+		Benz.prototype.driveBenz = function () {
+			console.log("driving Benz...")
+		}
 
 		function Bwn() {
 		
 		}
-		Bwn.prototype.start = function () {
-			console.log("Bwn start ....")
-		}
-		Bwn.prototype.run = function () {
-			console.log("Bwn run ....")
+		JGG.extend(Bwn,BaseClass)
+		// Bwn.prototype.start = function () {
+		// 	console.log("Bwn start ....")
+		// }
+		// Bwn.prototype.run = function () {
+		// 	console.log("Bwn run ....")
+		// }
+		Bwn.prototype.driveBwn = function () {
+			console.log("driving Bwn...")
 		}
 
 		function Adui() {
 			
 		}
-		Adui.prototype.start = function () {
-			console.log("Adui start ....")
+		JGG.extend(Adui,BaseClass)
+		// Adui.prototype.start = function () {
+		// 	console.log("Adui start ....")
+		// }
+		// Adui.prototype.run = function () {
+		// 	console.log("Adui run ....")
+		// }
+		Adui.prototype.driveAdui = function () {
+			console.log("driving Adui...")
 		}
-		Adui.prototype.run = function () {
-			console.log("Adui run ....")
-		}
-
 
 
 		var shop = new Carshop();
 		var newcar = shop.sellCar('Benz');
 		newcar.start();
 		newcar.run();
+		newcar.driveBenz();
+		var newcar2 = shop.sellCar('Bwn');
+		newcar2.start();
+		newcar2.run();
+		newcar2.driveBwn();
+		//newcar2.driveBenz();//会报错的
 	</script>
 </head>
 <body>
