@@ -8,7 +8,7 @@
 		// 工厂模式 factory
 		// 核心：为了生产对象，实现解耦
 
-		// 万事万物都是Object：卖车的商店-> 卖车-> 生产车 ->Factory
+		// 买什么车？去什么商店？->商店-> 卖车-> 生产车 ->Factory
 
 		// 细粒度 和 粗粒度
 		// 细粒度：更佳精确的查找
@@ -16,7 +16,10 @@
 
 		// 搭建一个工厂的环境
 
-		//卖车的商店
+		//卖车的商店可能有，奥迪4s，奔驰4s，宝马4s
+		// Super Shop 只有卖车的方法
+		// abstract Class 抽象类  ()
+		/* this is a abstract Class*/
 		function Carshop() {
 			
 		}
@@ -24,24 +27,89 @@
 			constructor : Carshop,
 			sellCar :function (type) {
 				// 销售人员
-				var car = CarFactory.createCar(type)
+				//var car = CarFactory.createCar(type)
 				// 保险，相关售后信息
 				// some code.....
-				return car;
+				//return car;
+				this.abstractSellCar(type)
+			},
+			abstractSellCar: function (type) {
+				throw new Error('this method is abstract...');
 			}
 		}
+
+
+		// Benz 4s店
+		function BenzCarShop() {
+		}
+		JGG.extend(BenzCarShop,Carshop)
+		BenzCarShop.prototype = {
+			constructor:BenzCarShop,
+			sellCar:function (type) {
+				var car ;//声明一个车变量
+				var types = ['Benz'];//所有奔驰类型的汽车 Benz200,Benz300
+				// 销售人员
+				//var car = CarFactory.createCar(type)
+				// 保险，相关售后信息
+				// some code.....
+				//return car;
+				for (t in types){
+					if (types[t] === type) {
+						car = new CarFactory.createCar(type)
+					} else {
+						throw new Error('没有你要的型号。。去别家吧');
+					}
+				}
+				return car
+			}
+		}
+		// Bwn 4s店
+		function BwnCarShop() {
+		}
+		JGG.extend(BwnCarShop,Carshop)
+		BwnCarShop.prototype = {
+			constructor:BwnCarShop,
+			sellCar:function (type) {
+				var car ;//声明一个车变量
+				var types = ['Bwn'];
+				for (t in types){
+					if (types[t] === type) {
+						car = new CarFactory.createCar(type)
+					} else {
+						throw new Error('没有你要的型号。。去别家吧');
+					}
+				}
+				return car
+			}
+		}
+		// Audi 4s店
+		function AduiCarShop() {
+		}
+		JGG.extend(AduiCarShop,Carshop)
+		AduiCarShop.prototype = {
+			constructor:AduiCarShop,
+			sellCar:function (type) {
+				var car ;//声明一个车变量
+				var types = ['Audi'];
+				for (t in types){
+					if (types[t] === type) {
+						car = new CarFactory.createCar(type)
+					} else {
+						throw new Error('没有你要的型号。。去别家吧');
+					}
+				}
+				return car
+			}
+		}
+
 
 		// 生产车的工厂  目的：生产车
 		// 单体模式
 		var CarFactory = {
 			createCar:function (type) {
-				var car;//声明一个变量
-				switch (type){
-					case 'Benz':car = new Benz();break;
-					case 'Bwn':car = new Bwn();break;
-					case 'Adui':car = new Adui();break;
-					default  :'not buy it';
-				}
+				var car = eval('new '+type+'()');//声明一个变量
+				// 动态创建车
+
 				//检验接口实现
 				JGG.Interface.ensureImplements(car,CarInterface);
 				return car
@@ -118,16 +186,28 @@
 		}
 
 
-		var shop = new Carshop();
-		var newcar = shop.sellCar('Benz');
-		newcar.start();
-		newcar.run();
-		newcar.driveBenz();
-		var newcar2 = shop.sellCar('Bwn');
-		newcar2.start();
-		newcar2.run();
-		newcar2.driveBwn();
+		// var shop = new Carshop();
+		// var newcar = shop.sellCar('Benz');
+		// newcar.start();
+		// newcar.run();
+		// newcar.driveBenz();
+		// var newcar2 = shop.sellCar('Bwn');
+		// newcar2.start();
+		// newcar2.run();
+		// newcar2.driveBwn();
 		//newcar2.driveBenz();//会报错的
+
+		var shop1 = new BenzCarShop();
+		var shop2 = new BwnCarShop();
+
+		var car1 = shop1.sellCar('Benz')
+		var car2 = shop2.sellCar('Bwn')
+		car1.start()
+		car1.run()
+
+		car2.start()
+		car2.run()
+
 	</script>
 </head>
 <body>
