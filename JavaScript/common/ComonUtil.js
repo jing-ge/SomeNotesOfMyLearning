@@ -70,3 +70,23 @@ JGG.extend = function(sub, sup) {
 		sup.prototype.constructor = sup;//手动还原父类原型函数构造器
 	}
 }
+
+//单体模式
+//实现一个跨浏览器的时间处理程序
+JGG.EventUtil = {
+	//addHandler(el, type, fn)
+	addHandler:function(element, type, handler){
+		if (element.addEventListener) {//FF
+			element.addEventListener(type,handler,false)//false 冒泡事件，不采用捕获事件
+		} else if (element.attachEvent) {//IE
+			element.attachEvent('on'+type,handler)
+		}
+	},
+	removeHandler:function(element, type, handler){
+		if (element.removeEventListener) {//FF
+			element.removeEventListener(type,handler,false)//false 冒泡事件，不采用捕获事件
+		} else if (element.detachEvent) {//IE
+			element.detachEvent('on'+type,handler)
+		}
+	}
+}

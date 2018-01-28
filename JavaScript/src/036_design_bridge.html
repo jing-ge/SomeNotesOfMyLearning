@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!-- 引入的核心js公共文件 -->
+	<script type="text/javascript" src="../common/ComonUtil.js"></script>
+	<script type="text/javascript" src="../jquery/jquery.min.js"></script>
+	<script type="text/javascript">
+		
+		// 桥街模式
+		// 主要作用：把现实和抽象分离开来，使他们可以独立的去实现
+
+		// 应用场景：事件监听回调机制
+		// 用户点击一个按钮，向服务器端发送信息
+
+		//jqueryOnready 当页面加载完毕后执行函数体 window.onload
+
+
+		// 传统模式 classic
+		// $(function () {
+		// 	//一·前台业务逻辑
+		// 	var inp = document.getElementById('inp');
+
+		// 	// 用事件注册的方式向元素上添加事件
+		// 	JGG.EventUtil.addHandler(inp, 'click', sendReq);
+
+
+
+
+
+		// 	//二·后台业务逻辑
+		// 	// 处理后台核心API
+		// 	function sendReq() {
+		// 		//ajax
+		// 		//参数1 请求服务器的地址
+		// 		//参数2 是一个对象或者一个字符串（发送数据参数）
+		// 		//参数3 回调函数
+		// 		// $.post('URL',{msg:this.value},function (result) {
+		// 		// 	// callback.....
+		// 		// })
+
+		// 		//暂时没有后台地址。。直接打印东西
+		// 		console.log("发送的数据："+this.value)
+		// 		console.log('some back data....')
+		// 	}
+		//});
+
+
+		//利用桥模式 分开两个业务逻辑单元
+
+		$(function () {
+			//一·前台业务逻辑
+			var inp = document.getElementById('inp');
+
+			// 用事件注册的方式向元素上添加事件
+			JGG.EventUtil.addHandler(inp, 'click',bridgeHandler);
+			//----------------------------------------------------
+
+			// 利用桥模式分开
+			function bridgeHandler() {
+				var msg = this.value
+				sendReq(msg);
+			}
+
+			//----------------------------------------------------
+			//二·后台业务逻辑
+			// 处理后台核心API
+			// 方便单元测试
+			function sendReq(msg) {
+				//ajax
+				//参数1 请求服务器的地址
+				//参数2 是一个对象或者一个字符串（发送数据参数）
+				//参数3 回调函数
+				// $.post('URL',{msg:this.value},function (result) {
+				// 	// callback.....
+				// })
+
+				//暂时没有后台地址。。直接打印东西
+				console.log("发送的数据："+msg)
+				console.log('some back data....')
+			}
+		});
+	</script>
+</head>
+<body>
+	<input id="inp" type="button" value="我是数据。。。"></input>
+</body>
+</html>
