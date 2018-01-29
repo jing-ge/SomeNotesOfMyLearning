@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		// 桥模式的第二种形式
+
+		// 桥模式 特权函数
+		var PublicClass = function () {
+			//private bariable
+			var name = "张三";
+
+			// getter 访问私有变量 // 特权函数
+			this.getName = function () {
+				return name
+			}
+		};
+		var p1 = new PublicClass()
+		console.log(p1.getName());
+
+
+		var PublicClass2 = function () {
+			//private bariable
+			var privateFun = function () {
+				//some code
+				console.log('some complex functions....')
+			}
+
+			// getter 访问私有函数 通过特权函数
+			this.bridgeMethod = function () {
+				return privateFun()
+			}
+		};
+		var p2 = new PublicClass2()
+		p2.bridgeMethod();
+
+
+		// 桥模式，把多个单体组织在一体
+		// 使每个单元独立化，各自既可以干各自的又可以结合起来
+		var Class1 = function (a,b,c) {
+			this.a = a;
+			this.b = b;
+			this.c = c
+		}
+		var Class2 = function (d,e) {
+			this.d = d;
+			this.e = e;
+		}
+		varBridgeClass = function (a,b,c,d,e) {
+			this.Class1 = new Class1(a,b,c)
+			this.Class2 = new Class2(d,e)
+		}
+	</script>
+</head>
+<body>
+	<input id="inp" type="button" value="我是数据。。。"></input>
+</body>
+</html>
