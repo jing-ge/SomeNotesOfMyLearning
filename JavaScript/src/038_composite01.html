@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="../common/ComonUtil.js"></script>
+	<script type="text/javascript">
+
+		//组合模式
+		//专为web截面用户开发的一种模式，遍历树状
+		
+		//组合模式
+		/*
+			场景模拟
+			-公司
+				-财务部门
+					-张一
+					-张二
+					-张三
+				-销售部门
+					-张四
+					-张五S
+					-张六
+			实际的人物是具体落实到人去试试的，也就是说只有人才具有具体的方法实现
+		*/
+
+		var Org = function (name) {
+			this.name = name;
+			this.depts = [];
+		}
+		Org.prototype = {
+			constructor : Org,
+			addDepts : function (child) {
+				this.depts.push(child)
+				//为了链式调用
+				return this
+			},
+			getDepts : function () {
+				return this.depts
+			}
+		}
+
+		var Dept = function (name) {
+			this.name = name;
+			this.persons = [];
+		}
+		Dept.prototype = {
+			constructor : Dept,
+			addPerson : function (child) {
+				this.persons.push(child)
+				return this
+			},
+			getPersons : function () {
+				return this.persons
+			}
+		}
+
+		var Person = function (name) {
+			this.name = name;
+		}
+		Person.prototype = {
+			constructor : Person,
+			hardworking : function () {
+				document.write(this.name + '...hardworking..')
+			},
+			sleeping : function () {
+				document.write(this.name + '...sleeping...')
+			}
+		}
+
+		var p1 = new Person("张1");
+		var p2 = new Person("张2");
+		var p3 = new Person("张3");
+		var p4 = new Person("张4");
+		var p5 = new Person("张5");
+		var p6 = new Person("张6");
+
+		var dept1 = new Dept("开发部门");
+		var dept2 = new Dept("销售部门");
+
+		dept1.addPerson(p1).addPerson(p2).addPerson(p3);
+		dept2.addPerson(p4).addPerson(p5).addPerson(p6);
+
+		var org = new Org("fbj");
+		org.addDepts(dept1).addDepts(dept2);
+
+		//需求，让具体的一个人去努力工作
+		//公司->部门->人->工作
+		//按以下这种开发，，一旦需求改变。。代码就得重构。。代码可维护型很差
+
+
+		for (var i = 0,depts = org.getDepts(); i < depts.length; i++) {
+
+			for(var j = 0,persons = depts[i].getPersons() ; j < persons.length; j++){
+				if (persons[j].name === "张4") {
+					//console.log(persons[j])
+					persons[j].hardworking();
+				}
+			}
+		}
+
+		// 应该用组合模式来做
+		// org.hardworking()整个公司人都工作
+		//  org.hardworking("张三")张三努力工作
+		// dept.hardingworking()整个部门都努力工作 
+	</script>
+</head>
+<body>
+
+</body>
+</html>
