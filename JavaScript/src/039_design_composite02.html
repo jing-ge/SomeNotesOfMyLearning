@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="../common/ComonUtil.js"></script>
+	<script type="text/javascript">
+
+		//组合模式
+		//专为web截面用户开发的一种模式，遍历树状
+		
+		//组合模式
+		/*
+			场景模拟
+			-公司
+				-财务部门
+					-张一
+					-张二
+					-张三
+				-销售部门
+					-张四
+					-张五S
+					-张六
+			实际的人物是具体落实到人去试试的，也就是说只有人才具有具体的方法实现
+		*/
+
+		/*
+			组合模式应用场景和特点
+			场景：
+			1 存在一批租着或者某种参差的对象
+			2 希望对这批对象或其中一个或者一部分事实一个操作
+		*/
+
+		/*
+			应用特点
+			-组合模式中只有两种类型对象：组合对象和叶子对象
+			-这两种类型对象都实现同一批接口
+			-一般我们会再组合对象总调用其方法并隐式调用下级对象的方法（递归思想）
+		*/
+
+		var CompositeInterface = new JGG.Interface('CompositeInterface',{'addChild','getChild'});
+		var LeafInterface = new JGG.Interface('LeafInterface',{'hardworking','sleeping'});
+
+		//组合对象
+		var Compoiste = function (name) {
+			this.name = name;
+			this.type = 'Composite'; //说明对象的类型是组合类型
+			this.children = []; // 承装孩子的数组
+		};
+		Composite.prototype = {
+			constructor : CompositeInterface,
+			addChild : function () {
+				
+			},
+			getChild:function (name) {
+				
+			},
+			hardworking:function (name) {
+				
+			},
+			sleeping:function (name) {
+				throw new Error('this method is disabled ...')
+			}
+		}
+
+		//叶子对象
+		var Leaf = function (name) {
+			this.name = name;
+			this.type = 'Leaf'; //说明对象是叶子对象
+		}
+		Leaf.prototype = {
+			constructor :Leaf,
+			addChild : function () {
+				throw new Error('this method is disabled ...')
+			},
+			getChild:function (name) {
+				if (this.name == name) {
+					return this;
+				}
+				return null
+			},
+			hardworking:function (name) {
+				document.write(this.name + "...努力工作...")
+			},
+			sleeping:function (name) {
+				document.write(this.name + "...努力睡觉...")
+			}
+		}
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
